@@ -1,0 +1,119 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          Audit Project
+        </div>
+        <div class="card-body">
+          <div class="d-flex flex-row flex-nowrap overflow-auto">
+            <table class="table table-bordered table-striped table-sm">
+              <thead>
+                <tr>
+                  <th width="20">No</th>
+                  <th width="50">SO</th>
+                  <th width="100">CLIENT</th>
+                  <th width="500">PROJECT NAME</th>
+                  <th width="100">APPLICATION</th>
+                  <th width="100">YEAR</th>
+                  <th width="150">PROJECT</th>
+                  <th width="150">MODE</th>
+                  <th width="250">ORDER TYPE</th>
+                  <th width="150">STATUS</th>
+                  <th width="200">DEVELOPMENT</th>
+                  <th width="200">MAINTENANCE</th>
+                  <th width="500">SUMMARY</th>
+                  <th width="100">KPI</th>
+                  <th width="100">ACTION</th>
+                </tr>
+                <tr>
+                  <th></th>
+                  <th><input type="text" class="form-control" placeholder="SO" /></th>
+                  <th><input type="text" class="form-control" placeholder="CLIENT" /></th>
+                  <th><input type="text" class="form-control" placeholder="PROJECT NAME" /></th>
+                  <th><input type="text" class="form-control" placeholder="APPLICATION" /></th>
+                  <th><input type="text" class="form-control" placeholder="YEAR" /></th>
+                  <th><input type="text" class="form-control" placeholder="PROJECT" /></th>
+                  <th><input type="text" class="form-control" placeholder="MODE" /></th>
+                  <th><input type="text" class="form-control" placeholder="ORDER TYPE" /></th>
+                  <th><input type="text" class="form-control" placeholder="STATUS" /></th>
+                  <th><input type="text" class="form-control" placeholder="DEVELOPMENT" /></th>
+                  <th><input type="text" class="form-control" placeholder="MAINTENANCE" /></th>
+                  <th><input type="text" class="form-control" placeholder="SUMMARY" /></th>
+                  <th><input type="text" class="form-control" placeholder="KPI" /></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let item of Data_audit_project; index as i;">
+                <tr>
+                  <td>{{i+1}}</td>
+                  <td>{{item.SO}}</td>
+                  <td>{{item.CLIENT}}</td>
+                  <td>{{item.PROJECT_NAME}}</td>
+                  <td>{{item.APPLICATION}}</td>
+                  <td>{{item.YEAR}}</td>
+                  <td>{{item.PROJECT}}</td>
+                  <td>{{item.MODE}}</td>
+                  <td>{{item.ORDER_TYPE}}</td>
+                  <td>{{item.STATUS}}</td>
+                  <td>{{item.DEVELOPMENT}}</td>
+                  <td>{{item.MAINTENANCE}}</td>
+                  <td>{{item.SUMMARY}}</td>
+                  <td>{{item.KPI}}</td>
+                  <td>
+                    <button class="btn btn-info btn-sm" (click)="Showdetail()">{{loadingIcon.show_detail ? "close" : "Detail"}}</button>
+                  </td>
+                </tr>
+                <tr *ngIf="loadingIcon.show_detail">
+                  <td colspan="15">
+                    <div class="card">
+                      <div class="card-header">
+                        Detail
+                        <div class="card-header-actions">
+                          <span class="btn badge badge-success" (click)="Showdetail()">Close</span>
+                        </div>
+                      </div>
+                      <div class="card-body">
+                        <table class="table table-bordered table-striped table-sm" *ngIf="item.PROJECT == 'DEVELOPMENT'">
+                          <thead>
+                            <tr>
+                              <th width="50">APP</th>
+                              <th width="50">DB*</th>
+                              <th width="50">[CONTRACT]</th>
+                              <th width="50">[BRD]</th>
+                              <th width="50">[Proposal]</th>
+                              <th width="50">[PP]</th>
+                              <th width="50">[FSD]*</th>
+                              <th width="50">[DEV]*</th>
+                              <th width="50">[MoM]</th>
+                              <th width="50">(UAT)*</th>
+                              <th width="50">(RTM)</th>
+                              <th width="50">[Config]*</th>
+                              <th width="50">[Manual]</th>
+                              <th width="50">[BAST]*</th>
+                            </tr>
+                          </thead>
+                        </table>
+                        <table class="table table-bordered table-striped table-sm" *ngIf="item.PROJECT == 'MAINTENANCE'">
+                          <thead>
+                            <tr>
+                              <th width="50">[Handover]</th>
+                              <th width="50">[WI]*</th>
+                              <th width="50">(Issue)*</th>
+                              <th width="50">(HC)*</th>
+                              <th width="50">[MR]*</th>
+                            </tr>
+                          </thead>
+                        </table>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
