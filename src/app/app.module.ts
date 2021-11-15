@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
+import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
@@ -46,6 +48,8 @@ import { ChartsModule } from 'ng2-charts';
 @NgModule({
   imports: [
     BrowserModule,
+    HttpClientModule,
+    SocialLoginModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     AppAsideModule,
@@ -71,9 +75,23 @@ import { ChartsModule } from 'ng2-charts';
   providers: [
     {
       provide: LocationStrategy,
-      useClass: HashLocationStrategy
+      useClass: PathLocationStrategy
     },
     IconSetService,
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '869245893013-fk2bmjv2gsho4jpbfjk885ltk6tv914b.apps.googleusercontent.com'
+            )
+          }
+        ]
+      } as SocialAuthServiceConfig,
+    },
   ],
   bootstrap: [ AppComponent ]
 })

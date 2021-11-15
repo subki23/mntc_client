@@ -1,8 +1,6 @@
-import { 
-  Component, 
-  OnInit, 
-  // NgZone 
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,24 +9,26 @@ import {
 export class LoginComponent implements OnInit {
 
   constructor(
-    // ngZone:NgZone
-  ){
-    // window['onSignIn'] = (user:any) => ngZone.run(
-    //   () => {
-    //     this.afterSignUp(user);
-    //   }
-    // )
-  }
+    private router: Router,
+    private authService: SocialAuthService
+  ){}
 
   ngOnInit():void {
+    this.ceklogin()
   }
 
-  // afterSignUp(googleUser:any){
-  //   this.socialAuthService = googleUser.getId()
-  // }
+  signInGoogleHandler(): void {
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then((data)=>{
+      localStorage.setItem("currentUser", JSON.stringify(data));
+      this.ceklogin()
+    })
+  }
 
-  // logOut(googleUser:any): void {
-  //   googleUser.signOut();
-  // }
+  ceklogin() {
+    const currentUser:any = JSON.parse(localStorage.getItem('currentUser'));
+    if (currentUser != null) {
+          this.router.navigate(['']);
+    }
+  }
 
 }

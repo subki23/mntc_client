@@ -1,0 +1,25 @@
+#set version docker
+version:"3.9"
+#set spesifikasi docker
+services:
+  #set name service
+  audit-cms:
+    #set name container
+    container_name: audit-cms
+    #set domain
+    domainname: audit
+    #get build docker
+    build:
+      context: .
+      dockerfile: Dockerfile
+    #set name image
+    image: audit-cms
+    networks:
+      #set name network jika 1 server samakan dengan nama backend
+      audit:
+#set network service
+networks: 
+  audit: 
+    name: audit
+    #biar tidak conflict
+    external: false

@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { AuthGuard } from './service/auth.guard'
+
 // Import Containers
 import { DefaultLayoutComponent } from './containers';
 
@@ -12,7 +14,7 @@ import { RegisterComponent } from './views/register/register.component';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'audit-system',
     pathMatch: 'full',
   },
   {
@@ -46,10 +48,15 @@ export const routes: Routes = [
   {
     path: '',
     component: DefaultLayoutComponent,
+    canActivate: [AuthGuard],
     data: {
       title: 'Home'
     },
     children: [
+      {
+        path: 'audit-system',
+        loadChildren: () => import('./views/auditsystem/auditsystem.module').then(m => m.AuditSystemModule)
+      },
       {
         path: 'base',
         loadChildren: () => import('./views/base/base.module').then(m => m.BaseModule)

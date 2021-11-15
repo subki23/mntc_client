@@ -32,6 +32,24 @@ export class AuditProjectComponent {
         KPI: "28%"
       }
     )
+    this.Data_audit_project.push(
+      {
+        ID: 2,
+        SO: "C00461",
+        CLIENT: "ADIRA FINANCE",
+        PROJECT_NAME: "C00460 - Recovery Activity Tracking System (RATS) (2018)",
+        APPLICATION: "RATS",
+        YEAR: "2018",
+        PROJECT: "MAINTENANCE",
+        MODE: "INITIAL",
+        ORDER_TYPE: "ORDER",
+        STATUS: "GO LIVE",
+        DEVELOPMENT: "DHIMAS -> RIDWAN ROBIN",
+        MAINTENANCE: "ANGGIT, YOSAFAT",
+        SUMMARY: "TIDAK LOLOS AUDIT, INFORMASI TERSEDIA <= 60% (Mandatory : 28% & Optional : 0% Catatan : APP: ?, DB: ?, Config: ?, BAST: ?",
+        KPI: "28%"
+      }
+    )
   }
 
   Showdetail = () => {
