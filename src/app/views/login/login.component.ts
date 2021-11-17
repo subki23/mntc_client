@@ -18,16 +18,27 @@ export class LoginComponent implements OnInit {
   }
 
   signInGoogleHandler(): void {
-    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then((data)=>{
-      localStorage.setItem("currentUser", JSON.stringify(data));
-      this.ceklogin()
-    })
+    try {
+      this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then((data)=>{
+        var email = data.email
+        if ( email.includes("@code.id") ) {
+          localStorage.setItem("currentUser", JSON.stringify(data));
+        }else{
+          this.authService.signOut();
+        }
+        this.ceklogin()
+      })
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   ceklogin() {
     const currentUser:any = JSON.parse(localStorage.getItem('currentUser'));
     if (currentUser != null) {
-          this.router.navigate(['']);
+      this.router.navigate(['']);
+    }else{
+      this.router.navigate(['login'])
     }
   }
 

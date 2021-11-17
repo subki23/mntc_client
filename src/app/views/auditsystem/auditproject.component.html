@@ -47,34 +47,34 @@
               <tbody *ngFor="let item of Data_audit_project; index as i;">
                 <tr>
                   <td>{{i+1}}</td>
-                  <td>{{item.SO}}</td>
-                  <td>{{item.CLIENT}}</td>
-                  <td>{{item.PROJECT_NAME}}</td>
-                  <td>{{item.APPLICATION}}</td>
-                  <td>{{item.YEAR}}</td>
-                  <td>{{item.PROJECT}}</td>
-                  <td>{{item.MODE}}</td>
-                  <td>{{item.ORDER_TYPE}}</td>
-                  <td>{{item.STATUS}}</td>
-                  <td>{{item.DEVELOPMENT}}</td>
-                  <td>{{item.MAINTENANCE}}</td>
-                  <td>{{item.SUMMARY}}</td>
-                  <td>{{item.KPI}}</td>
+                  <td>{{item.so}}</td>
+                  <td>{{item.client}}</td>
+                  <td>{{item.projectName}}</td>
+                  <td>{{item.application}}</td>
+                  <td>{{item.year}}</td>
+                  <td>{{item.project}}</td>
+                  <td>{{item.mode}}</td>
+                  <td>{{item.orderType}}</td>
+                  <td>{{item.status}}</td>
+                  <td>{{item.development}}</td>
+                  <td>{{item.maintenance}}</td>
+                  <td>{{item.summary}}</td>
+                  <td>{{item.kpi}}</td>
                   <td>
-                    <button class="btn btn-info btn-sm" (click)="Showdetail()">{{loadingIcon.show_detail ? "close" : "Detail"}}</button>
+                    <button class="btn btn-info btn-sm" (click)="Showdetail(item)">{{item.show_detail ? "close" : "Detail"}}</button>
                   </td>
                 </tr>
-                <tr *ngIf="loadingIcon.show_detail">
+                <tr *ngIf="item.show_detail">
                   <td colspan="15">
                     <div class="card">
                       <div class="card-header">
                         Detail
                         <div class="card-header-actions">
-                          <span class="btn badge badge-success" (click)="Showdetail()">Close</span>
+                          <span class="btn badge badge-success" (click)="Showdetail(item)">Close</span>
                         </div>
                       </div>
                       <div class="card-body">
-                        <table class="table table-bordered table-striped table-sm" *ngIf="item.PROJECT == 'DEVELOPMENT'">
+                        <table class="table table-bordered table-striped table-sm" *ngIf="item.project == 'DEVELOPMENT'">
                           <thead>
                             <tr>
                               <th width="50">APP</th>
@@ -93,10 +93,31 @@
                               <th width="50">[BAST]*</th>
                             </tr>
                           </thead>
+                          <tbody>
+                            <tr>
+                              <td>{{item.detail.app}}</td>
+                              <td>{{item.detail.db}}</td>
+                              <td>{{item.detail.contract}}</td>
+                              <td>{{item.detail.devBrd}}</td>
+                              <td>{{item.detail.devProposal}}</td>
+                              <td>{{item.detail.devPp}}</td>
+                              <td>{{item.detail.devFsd}}</td>
+                              <td>{{item.detail.devDev}}</td>
+                              <td>{{item.detail.devMom}}</td>
+                              <td>{{item.detail.devUat}}</td>
+                              <td>{{item.detail.devRtm}}</td>
+                              <td>{{item.detail.devConfig}}</td>
+                              <td>{{item.detail.devManual}}</td>
+                              <td>{{item.detail.devBast}}</td>
+                            </tr>
+                          </tbody>
                         </table>
-                        <table class="table table-bordered table-striped table-sm" *ngIf="item.PROJECT == 'MAINTENANCE'">
+                        <table class="table table-bordered table-striped table-sm" *ngIf="item.project == 'MAINTENANCE'">
                           <thead>
                             <tr>
+                              <th width="50">APP</th>
+                              <th width="50">DB*</th>
+                              <th width="50">[CONTRACT]</th>
                               <th width="50">[Handover]</th>
                               <th width="50">[WI]*</th>
                               <th width="50">(Issue)*</th>
@@ -104,6 +125,18 @@
                               <th width="50">[MR]*</th>
                             </tr>
                           </thead>
+                          <tbody>
+                            <tr>
+                              <td>{{item.detail.app}}</td>
+                              <td>{{item.detail.db}}</td>
+                              <td>{{item.detail.contract}}</td>
+                              <td>{{item.detail.mtcHandover}}</td>
+                              <td>{{item.detail.mtcWi}}</td>
+                              <td>{{item.detail.mtcIssue}}</td>
+                              <td>{{item.detail.mtcHc}}</td>
+                              <td>{{item.detail.mtcMr}}</td>
+                            </tr>
+                          </tbody>
                         </table>
                       </div>
                     </div>

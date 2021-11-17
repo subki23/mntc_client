@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import { Router } from '@angular/router';
 import { navItems } from '../../_nav';
+import { SocialAuthService } from 'angularx-social-login';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,14 +12,16 @@ export class DefaultLayoutComponent {
   public navItems = navItems;
 
   constructor(
-    private router: Router
+    private router: Router,
+    private authService: SocialAuthService
   ){}
 
   toggleMinimize(e) {
     this.sidebarMinimized = e;
   }
 
-  logout() {
+  logout = async () => {
+    await this.authService.signOut();
     localStorage.removeItem('currentUser');
     this.router.navigate(['login'])
   }
